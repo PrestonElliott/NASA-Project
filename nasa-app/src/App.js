@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import DailyPic from './Containers/dailyPic'
+import DailyPic from './Components/dailyPic'
 
 function App() {
   return (
