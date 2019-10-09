@@ -1,19 +1,19 @@
-import React from 'react'
-import { Image } from 'react-bootstrap'
-// import { Segment, Image } from 'semantic-ui-react'
+import React, { Fragment } from 'react'
+import Pic from './pic'
 
-
-const DailyPic = (props) => (
-    console.log(props.hdurl)
-
-    // <Image src={props.photoData.hdurl} fluid />
-    // <Segment>
-    //     <Image src={props.photoData.hdurl} size='medium' centered />
-    //     <p>
-    //         {props.photoData.explanation}
-    //     </p>
-    // </Segment>
-
-)
+const DailyPic = (props) => {
+    return (
+        <Fragment>
+            <div>
+                {props.photoData.map(pic =>
+                    <Pic
+                        key={pic.id}
+                        pic={pic}
+                    />
+                )}
+            </div>
+        </Fragment>
+    )
+}
 
 export default DailyPic 

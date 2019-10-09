@@ -1,20 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import DailyPic from './Components/dailyPic'
+import DailyPic from './Components/dailyPic';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-          <DailyPic/>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    data: []
+  }
+
+  fetchDailyPic () {
+      const key = "Twc8x8c9cA57VmYOa3boYeqTce88Oig9md5mhjmC"
+      fetch(`https://api.nasa.gov/planetary/apod?api_key=${key}`)
+      .then(res => res.json())
+      .then(data => this.setState({data: data}))
+  }
+
+  componentDidMount() { 
+      this.fetchDailyPic()
+  }
+
+  render() {
+      return (
+          <div>
+              <DailyPic photoData={this.state.data}/>
+          </div>
+      )
+  }
 }
 
 export default App;
