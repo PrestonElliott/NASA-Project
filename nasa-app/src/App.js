@@ -5,14 +5,24 @@ import DailyPic from './Components/dailyPic';
 class App extends React.Component {
 
   state = {
-    data: []
+    data: {
+        date: "",
+        explanation: "",
+        hdurl: "",
+        media_type: "",
+        service_version: "",
+        title: "",
+        url: ""
+    }
   }
 
   fetchDailyPic () {
       const key = "Twc8x8c9cA57VmYOa3boYeqTce88Oig9md5mhjmC"
       fetch(`https://api.nasa.gov/planetary/apod?api_key=${key}`)
       .then(res => res.json())
-      .then(data => this.setState({data: data}))
+      .then(data => {console.log(data)
+       this.setState({data: data})
+    })
   }
 
   componentDidMount() { 
@@ -22,7 +32,7 @@ class App extends React.Component {
   render() {
       return (
           <div>
-              <DailyPic photoData={this.state.data}/>
+              <DailyPic data={this.state.data}/>
           </div>
       )
   }

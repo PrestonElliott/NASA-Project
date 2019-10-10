@@ -1,16 +1,13 @@
 import React, { Fragment } from 'react'
-import Pic from './pic'
+// import Pic from './pic'
 
 const DailyPic = (props) => {
     return (
         <Fragment>
             <div>
-                {props.photoData.map(pic =>
-                    <Pic
-                        key={pic.id}
-                        pic={pic}
-                    />
-                )}
+                <p>{props.data.explanation}</p>
+                <p>{props.data.title}</p>
+                <img alt="not loaded" src={props.data.hdurl} />
             </div>
         </Fragment>
     )
