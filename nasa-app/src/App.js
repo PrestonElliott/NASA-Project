@@ -50,7 +50,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<DailyPic dailyPic={this.state.dailyPic} />
-				{/* <EpicNasa epicData={this.state.epicData} /> */}
+				<EpicNasa epicData={this.state.epicData} />
 			</div>
 		)
 	}
