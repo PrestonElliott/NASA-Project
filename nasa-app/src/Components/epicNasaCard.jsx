@@ -3,11 +3,13 @@ import React, {Componenet} from 'react'
 
 
 const EpicNasaCard = (props) => {
+
     return (
         <div>
             <h2>{props.epic.caption}</h2>
         </div>
     )
+    
 }
 
 export default EpicNasaCard

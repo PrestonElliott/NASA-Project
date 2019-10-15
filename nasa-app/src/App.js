@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.css';
-import DailyPic from './Components/dailyPic';
+import React from 'react'
+import './App.css'
+import DailyPic from './Components/dailyPic'
 import EpicNasa from './Components/epicNasa'
 
 class App extends React.Component {
@@ -15,11 +15,12 @@ class App extends React.Component {
 			title: "",
 			url: ""
 		},
-		epicData: {
-
-		}
+		epicData: {}
 	}
 
+
+	// REFACTOR FETCHES INTO THEIR OWN COMPONENT AND IMPORT
+	// MAY NEED TO CALL FUNCTIONS WITHOUT THIS WITHIN APP
 	fetchDailyPic () {
 		const key = "Twc8x8c9cA57VmYOa3boYeqTce88Oig9md5mhjmC"
 		fetch(`https://api.nasa.gov/planetary/apod?api_key=${key}`)
