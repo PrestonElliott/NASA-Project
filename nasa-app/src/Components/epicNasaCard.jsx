@@ -1,6 +1,5 @@
 import React from 'react'
-// import { Image, Jumbotron, Button, Modal } from 'react-bootstrap'
-
+import { connect } from 'react-redux'
 
 const EpicNasaCard = (props) => {
 
@@ -12,4 +11,5 @@ const EpicNasaCard = (props) => {
     
 }
 
-export default EpicNasaCard
+let mapStateToProps = state => ({ epicReducer: state.epicReducer.epicPicsData })
+export default connect(mapStateToProps)(EpicNasaCard)

@@ -21,4 +21,4 @@ const DailyPic = (props) => {
     
 }
 let mapStateToProps = state => ({ dailyPic: state.dailyPicReducer.dailyPic })
-export default connect(mapStateToProps)(DailyPic)
+export default connect(mapStateToProps)(DailyPic) 
