@@ -3,8 +3,6 @@ import './App.css'
 import DailyPic from './Components/dailyPic'
 import EpicNasa from './Components/epicNasa'
 
-console.log(process.env.REACT_APP_NASA_API_KEY)
-
 class App extends React.Component {
 
 	state = {
