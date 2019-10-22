@@ -15,18 +15,15 @@ class App extends React.Component {
 			title: "",
 			url: ""
 		},
-		epicData: {}
+		epicPhotoData: {}
 	}
 
 
-	// REFACTOR FETCHES INTO THEIR OWN COMPONENT AND IMPORT
-	// MAY NEED TO CALL FUNCTIONS WITHOUT THIS WITHIN APP
 	fetchDailyPic () {
 		const key = "Twc8x8c9cA57VmYOa3boYeqTce88Oig9md5mhjmC"
 		fetch(`https://api.nasa.gov/planetary/apod?api_key=${key}`)
 		.then(res => res.json())
 		.then(data => {
-			// console.log(data)
 			this.setState({ dailyPic: data })
 		})
 	}
@@ -37,7 +34,7 @@ class App extends React.Component {
 		fetch(`https://epic.gsfc.nasa.gov/api/natural`)
 		.then(res => res.json())
 		.then(data => {
-			this.setState({ epicData: data })
+			this.setState({ epicPhotoData: data })
 			console.log(this.state)
 		})
 	}
@@ -51,7 +48,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<DailyPic dailyPic={this.state.dailyPic} />
-				<EpicNasa epicData={this.state.epicData} />
+				<EpicNasa epicPhotoData={this.state.epicPhotoData} />
 			</div>
 		)
 	}

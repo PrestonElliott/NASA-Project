@@ -8,8 +8,8 @@ class EpicNasa extends Component {
 
         return (
             <div>
-                {this.props.epicData.length &&
-                this.props.epicData.map(epic => <EpicNasaCard key={epic.id} epic={epic} />)
+                {this.props.epicPhotoData.length &&
+                this.props.epicPhotoData.map(epic => <EpicNasaCard key={epic.id} epic={epic} />)
                 }
             </div>
         )

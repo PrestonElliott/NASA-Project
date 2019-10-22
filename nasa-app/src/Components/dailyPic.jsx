@@ -17,6 +17,7 @@ const DailyPic = (props) => {
             </div>
         </Fragment>
     )
+    
 }
 
 export default DailyPic 

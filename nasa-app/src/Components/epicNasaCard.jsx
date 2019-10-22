@@ -1,4 +1,4 @@
-import React, {Componenet} from 'react'
+import React from 'react'
 // import { Image, Jumbotron, Button, Modal } from 'react-bootstrap'
 
 
