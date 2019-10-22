@@ -3,6 +3,8 @@ import './App.css'
 import DailyPic from './Components/dailyPic'
 import EpicNasa from './Components/epicNasa'
 
+console.log(process.env.REACT_APP_NASA_API_KEY)
+
 class App extends React.Component {
 
 	state = {
@@ -20,7 +22,7 @@ class App extends React.Component {
 
 
 	fetchDailyPic () {
-		const key = "Twc8x8c9cA57VmYOa3boYeqTce88Oig9md5mhjmC"
+		const key = process.env.REACT_APP_NASA_API_KEY
 		fetch(`https://api.nasa.gov/planetary/apod?api_key=${key}`)
 		.then(res => res.json())
 		.then(data => {
