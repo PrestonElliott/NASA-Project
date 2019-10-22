@@ -1,30 +1,32 @@
 import React from 'react'
 import './App.css'
+import { connect } from 'react-redux'
+
 import DailyPic from './Components/dailyPic'
 import EpicNasa from './Components/epicNasa'
 
 class App extends React.Component {
 
-	state = {
-		dailyPic: {
-			date: "",
-			explanation: "",
-			hdurl: "",
-			media_type: "",
-			service_version: "",
-			title: "",
-			url: ""
-		},
-		epicPhotoData: {}
-	}
-
+	// state = {
+	// 	dailyPic: {
+	// 		date: "",
+	// 		explanation: "",
+	// 		hdurl: "",
+	// 		media_type: "",
+	// 		service_version: "",
+	// 		title: "",
+	// 		url: ""
+	// 	},
+	// 	epicPhotoData: {}
+	// }
 
 	fetchDailyPic () {
 		const key = process.env.REACT_APP_NASA_API_KEY
 		fetch(`https://api.nasa.gov/planetary/apod?api_key=${key}`)
 		.then(res => res.json())
 		.then(data => {
-			this.setState({ dailyPic: data })
+			this.props.dispatch({ type: "FETCH_DAILY_PIC", data: data })
+			// this.setState({ dailyPic: data })
 		})
 	}
 
@@ -41,19 +43,20 @@ class App extends React.Component {
 
 	componentDidMount() { 
 		this.fetchDailyPic()
-		this.fetchEPICAPI()
+		// this.fetchEPICAPI()
 	}
 
 	render() {
 		return (
 			<div>
-				<DailyPic dailyPic={this.state.dailyPic} />
-				<EpicNasa epicPhotoData={this.state.epicPhotoData} />
+				<DailyPic />
+				{/* <EpicNasa epicPhotoData={this.state.epicPhotoData} /> */}
 			</div>
 		)
 	}
 }
 
-export default App;
+let mapStateToProps = state => ({ dailyPicReducer: state.dailyPicReducer.dailyPic })
+export default connect(mapStateToProps)(App);
 
 
