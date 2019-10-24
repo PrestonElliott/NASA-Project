@@ -1,22 +1,35 @@
 import React from 'react'
 import './App.css'
-import { connect } from 'react-redux'
 
 import DailyPic from './Components/dailyPic'
 import EpicNasa from './Components/epicNasa'
 
-class App extends React.Component {
+export default class App extends React.Component {
 
 	state = {
+		dailyPic: {
+			date: "",
+			explanation: "",
+			hdurl: "",
+			media_type: "",
+			service_version: "",
+			title: "",
+			url: ""
+		},
 		epicPicsData: {},
 		imgUrlArr: []
+	}
+
+	componentDidMount() { 
+		this.fetchDailyPic()
+		this.fetchEpicApi()
 	}
 
 	fetchDailyPic () {
 		const key = process.env.REACT_APP_NASA_API_KEY
 		fetch(`https://api.nasa.gov/planetary/apod?api_key=${key}`)
 		.then(res => res.json())
-		.then(data => { this.props.dispatch({ type: "FETCH_DAILY_PIC", data: data }) })
+		.then(data => { this.setState({ ...this.state, dailyPic: data }) })
 	}
 
 	fetchEpicApi () {
@@ -38,28 +51,23 @@ class App extends React.Component {
 			img = image.image
 	
 			fetch(`https://epic.gsfc.nasa.gov/archive/natural/${dateFormat}/png/${img}.png`)
-			.then(res =>  {
-				this.setState({ ...this.state, imgUrlArr: res.push() }) 
+			.then(res => res.json())
+			.then(res =>  { this.setState({ ...this.state, imgUrlArr: res.push() }) 
 			})
 		})
     }
-
-	componentDidMount() { 
-		this.fetchDailyPic()
-		this.fetchEpicApi()
-	}
 
 	render() {
 		console.log(this.state)
 		return (
 			<div>
-				<DailyPic />
+				<DailyPic dailyPic={this.state.dailyPic} />
 				<EpicNasa imgUrlArr={this.state.imgUrlArr} />
 			</div>
 		)
 	}
 }
 
-export default connect()(App)
+// export default connect()(App)
 
 

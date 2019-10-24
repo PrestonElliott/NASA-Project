@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { Image, Jumbotron } from 'react-bootstrap'
 
 
@@ -20,5 +20,8 @@ const DailyPic = (props) => {
     )
     
 }
-let mapStateToProps = state => ({ dailyPic: state.dailyPicReducer.dailyPic })
-export default connect(mapStateToProps)(DailyPic) 
+
+export default DailyPic
+
+// let mapStateToProps = state => ({ dailyPic: state.dailyPicReducer.dailyPic })
+// export default connect(mapStateToProps)(DailyPic) 
