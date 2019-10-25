@@ -5,7 +5,10 @@ const EpicNasaCard = (props) => {
 
     return (
         <div>
-            <h2>{props.epic.caption}</h2>
+            <img 
+                src={props.imgUrl}
+                alt="epic-photo"
+            />
         </div>
     )
     

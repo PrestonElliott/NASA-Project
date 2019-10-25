@@ -7,13 +7,9 @@ export default class EpicNasa extends Component {
 
         return (
             <div>
-                {/* {this.props.epicPicsData.length &&
-                this.props.epicPicsData.map(epic => this.constructEpicImgUrl(epic))
-                } */}
-
-                {/* {this.props.epicPicsData.length &&
-                this.props.epicPicsData.map(epic => <EpicNasaCard key={epic.id} epic={epic} />)
-                } */}
+                {this.props.imgUrlArr.length &&
+                this.props.imgUrlArr.map(imgUrl => <EpicNasaCard key={imgUrl.id} imgUrl={imgUrl} /> )
+                }
             </div>
         )
     }
