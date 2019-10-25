@@ -42,17 +42,17 @@ export default class App extends React.Component {
 	}
 
 	constructEpicImgUrl = (epicPicsData) => {
-		epicPicsData.map(image => {
+		epicPicsData.map(epic => {
 			
 			let dateFormat = ""
 			let img = ""
 	
-			dateFormat = image.date.split(" ")[0].replace("-", "/").replace("-", "/")
-			img = image.image
+			dateFormat = epic.date.split(" ")[0].replace("-", "/").replace("-", "/")
+			img = epic.image
 	
 			fetch(`https://epic.gsfc.nasa.gov/archive/natural/${dateFormat}/png/${img}.png`)
 			.then(res => res.json())
-			.then(res =>  { this.setState({ ...this.state, imgUrlArr: res.push() }) 
+			.then(data =>  { this.setState({ ...this.state, imgUrlArr: data.push() }) 
 			})
 		})
     }
