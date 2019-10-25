@@ -1,8 +1,9 @@
 import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 import './App.css'
 
 import DailyPic from './Components/dailyPic'
-import EpicNasa from './Components/epicNasa'
+// import EpicNasa from './Components/epicNasa'
 
 export default class App extends React.Component {
 
@@ -49,11 +50,9 @@ export default class App extends React.Component {
 	
 			dateFormat = epic.date.split(" ")[0].replace("-", "/").replace("-", "/")
 			img = epic.image
-	
-			fetch(`https://epic.gsfc.nasa.gov/archive/natural/${dateFormat}/png/${img}.png`)
-			.then(res => res.json())
-			.then(data =>  { this.setState({ ...this.state, imgUrlArr: data.push() }) 
-			})
+
+			let newImgUrl = (`https://epic.gsfc.nasa.gov/archive/natural/${dateFormat}/png/${img}.png`) 
+			this.setState({ ...this.state, imgUrlArr: [...this.state.imgUrlArr, newImgUrl ] })
 		})
     }
 
@@ -61,8 +60,12 @@ export default class App extends React.Component {
 		console.log(this.state)
 		return (
 			<div>
-				<DailyPic dailyPic={this.state.dailyPic} />
-				<EpicNasa imgUrlArr={this.state.imgUrlArr} />
+				<Switch>
+					<Route path='/home' render={() => < DailyPic dailyPic={this.state.dailyPic} />} />
+					{/* <Route path='/' render={() => <Redirect to='/home'/>}  /> */}
+					{/* <DailyPic dailyPic={this.state.dailyPic} />
+					<EpicNasa imgUrlArr={this.state.imgUrlArr} /> */}
+				</Switch>
 			</div>
 		)
 	}
