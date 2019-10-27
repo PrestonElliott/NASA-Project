@@ -1,12 +1,11 @@
 import React from 'react'
-import Image from 'react-bootstrap/Image'
 // import { connect } from 'react-redux'
 
 const EpicNasaCard = (props) => {
 
     return (
         <div>
-            <Image id="epic-images" src={props.imgUrl} rounded alt="epic-photo" />
+            <img id="epic-images" src={props.imgUrl} alt="epic-pics" />
         </div>
     )
     

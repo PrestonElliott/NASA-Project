@@ -43,7 +43,7 @@ export default class App extends React.Component {
 	}
 
 	constructEpicImgUrl = (epicPicsData) => {
-		epicPicsData.map(epic => {
+		epicPicsData.forEach(epic => {
 			
 			let dateFormat = ""
 			let img = ""
