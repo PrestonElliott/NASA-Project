@@ -8,6 +8,14 @@
   padding: 2%;
 }
 
+#epic-images {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 2%;
+}
+
 
 body {
   margin: 0;
