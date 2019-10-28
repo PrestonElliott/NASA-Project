@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Switch, Route } from 'react-router-dom'
+// import { Switch, Route, Link } from 'react-router-dom'
 import './App.css'
 
 import DailyPic from './Components/dailyPic'
@@ -18,12 +18,8 @@ export default class App extends React.Component {
 			url: ""
 		},
 		epicPicsData: {},
-		imgUrlArr: []
-	}
-
-	componentDidMount() { 
-		this.fetchDailyPic()
-		this.fetchEpicApi()
+		imgUrlArr: [],
+		
 	}
 
 	fetchDailyPic () {
@@ -33,14 +29,34 @@ export default class App extends React.Component {
 		.then(data => { this.setState({ ...this.state, dailyPic: data }) })
 	}
 
-	fetchEpicApi () {
-		fetch(`https://epic.gsfc.nasa.gov/api/natural`)
+	componentDidMount() { 
+		this.fetchDailyPic()
+		this.fetchEpicDate()
+		// this.fetchEpicApi()
+	}
+
+	// CONTINUE TO WORK ON THIS FETCH
+	// dateRange: ["2015-06-13", "2019-06-27"]
+	fetchEpicDate() {
+		const key = process.env.REACT_APP_NASA_API_KEY
+		let date = "2019-06-01"
+		fetch(`https://api.nasa.gov/EPIC/api/natural/date/${date}?api_key=${key}`)
 		.then(res => res.json())
-		.then(data => { 
+		.then(data => {
 			this.setState({ ...this.state, epicPicsData: data }) 
 			this.constructEpicImgUrl(data)
 		})
 	}
+
+	// REPLACED THIS FETCH WITH DYNAMIC DATE FETCH
+	// fetchEpicApi () {
+	// 	fetch(`https://epic.gsfc.nasa.gov/api/natural`)
+	// 	.then(res => res.json())
+	// 	.then(data => { 
+			// this.setState({ ...this.state, epicPicsData: data }) 
+			// this.constructEpicImgUrl(data)
+	// 	})
+	// }
 
 	constructEpicImgUrl = (epicPicsData) => {
 		epicPicsData.forEach(epic => {

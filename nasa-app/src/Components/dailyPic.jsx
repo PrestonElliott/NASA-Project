@@ -11,7 +11,7 @@ const DailyPic = (props) => {
         <Fragment>
             <div>
                 <Jumbotron>
-                    <h2>{props.dailyPic.title}</h2>
+                    <h2 id="daily-pic-title">{props.dailyPic.title}</h2>
                     <p>{props.dailyPic.explanation}</p>
                     <Image id="jumbo-photo" src={props.dailyPic.hdurl} />
                 </Jumbotron>
