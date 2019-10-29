@@ -5,6 +5,9 @@ import './App.css'
 import DailyPic from './Components/dailyPic'
 import EpicNasa from './Components/epicNasa'
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 export default class App extends React.Component {
 
 	state = {
@@ -19,7 +22,7 @@ export default class App extends React.Component {
 		},
 		epicPicsData: {},
 		imgUrlArr: [],
-		
+		startDate: new Date(2015, 5, 20)	
 	}
 
 	fetchDailyPic () {
@@ -36,27 +39,22 @@ export default class App extends React.Component {
 	}
 
 	// CONTINUE TO WORK ON THIS FETCH
-	// dateRange: ["2015-06-13", "2019-06-27"]
+	// dateRange: "2015-06-13" through "2019-06-27"
 	fetchEpicDate() {
 		const key = process.env.REACT_APP_NASA_API_KEY
-		let date = "2019-06-01"
-		fetch(`https://api.nasa.gov/EPIC/api/natural/date/${date}?api_key=${key}`)
+		
+		let date = this.state.startDate
+		let dateFormat = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2)
+
+		console.log(dateFormat)
+
+		fetch(`https://api.nasa.gov/EPIC/api/natural/date/${dateFormat}?api_key=${key}`)
 		.then(res => res.json())
 		.then(data => {
 			this.setState({ ...this.state, epicPicsData: data }) 
 			this.constructEpicImgUrl(data)
 		})
 	}
-
-	// REPLACED THIS FETCH WITH DYNAMIC DATE FETCH
-	// fetchEpicApi () {
-	// 	fetch(`https://epic.gsfc.nasa.gov/api/natural`)
-	// 	.then(res => res.json())
-	// 	.then(data => { 
-			// this.setState({ ...this.state, epicPicsData: data }) 
-			// this.constructEpicImgUrl(data)
-	// 	})
-	// }
 
 	constructEpicImgUrl = (epicPicsData) => {
 		epicPicsData.forEach(epic => {
@@ -70,13 +68,20 @@ export default class App extends React.Component {
 			let newImgUrl = (`https://epic.gsfc.nasa.gov/archive/natural/${dateFormat}/png/${img}.png`) 
 			this.setState({ ...this.state, imgUrlArr: [...this.state.imgUrlArr, newImgUrl ] })
 		})
-    }
+	}
+	
+	handleChange = date => {
+		this.setState({
+		  startDate: date,
+		})
+	}
 
 	render() {
 		console.log(this.state)
 		return (
 			<div>
 			<DailyPic dailyPic={this.state.dailyPic}/>
+			<DatePicker selected={this.state.date} onChange={this.handleChange} onSelect={this.handleSelect} />
 			<EpicNasa imgUrlArr={this.state.imgUrlArr}  />
 				{/* <Switch>
 					<Route path='/home' render={() => < DailyPic dailyPic={this.state.dailyPic} />} />
@@ -91,4 +96,12 @@ export default class App extends React.Component {
 
 // export default connect()(App)
 
-
+// REPLACED THIS FETCH WITH DYNAMIC DATE FETCH
+// fetchEpicApi () {
+// 	fetch(`https://epic.gsfc.nasa.gov/api/natural`)
+// 	.then(res => res.json())
+// 	.then(data => { 
+		// this.setState({ ...this.state, epicPicsData: data }) 
+		// this.constructEpicImgUrl(data)
+// 	})
+// }
