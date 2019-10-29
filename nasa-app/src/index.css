@@ -21,6 +21,12 @@
   padding: 2%;
 }
 
+#date-select-title {
+  text-align: center;
+  padding: 2%;
+}
+
+
 
 body {
   margin: 0;

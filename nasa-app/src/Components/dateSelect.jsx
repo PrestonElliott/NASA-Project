@@ -4,23 +4,18 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default class DateSelect extends React.Component {
-  // state = {
-  //   startDate: new Date()
-  // };
-
-  handleChange = date => {
-    this.setState({
-      startDate: date
-    });
-  };
 
   render() {
     return (
-      <DatePicker
-        selected={this.state.startDate}
-        onChange={this.handleChange}
-      />
-    );
+      <div>
+        <h2 id="date-select-title">Please select a date between "2015-06-13" & "2019-06-27"</h2>
+        <DatePicker
+          id="calendar-widget"
+          selected={this.props.startDate}
+          onChange={this.handleChange}
+        />
+      </div>
+    )
   }
 }
 
