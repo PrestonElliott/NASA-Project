@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
-// import { connect } from 'react-redux'
 import { Image, Jumbotron } from 'react-bootstrap'
-
+import Counter from './counter'
 
 // ADD MODAL WITH FULL INFORMATION AND HD PHOTO
 
@@ -15,6 +14,7 @@ const DailyPic = (props) => {
                     <p>{props.dailyPic.explanation}</p>
                     <Image id="jumbo-photo" src={props.dailyPic.hdurl} />
                 </Jumbotron>
+                <Counter/>
             </div>
         </Fragment>
     ) 
@@ -22,6 +22,3 @@ const DailyPic = (props) => {
 }
 
 export default DailyPic
-
-// let mapStateToProps = state => ({ dailyPic: state.dailyPicReducer.dailyPic })
-// export default connect(mapStateToProps)(DailyPic) 

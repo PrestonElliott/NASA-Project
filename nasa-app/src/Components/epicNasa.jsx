@@ -9,7 +9,10 @@ export default class EpicNasa extends Component {
         return (
             <div>
                 {this.props.imgUrlArr.length &&
-                this.props.imgUrlArr.map(imgUrl => <EpicNasaCard key={imgUrl.id} imgUrl={imgUrl} /> )
+                this.props.imgUrlArr.map(imgUrl => 
+                    imgUrl === null ? 
+                    "No photos were taken on this date." :  <EpicNasaCard key={imgUrl.id} imgUrl={imgUrl} /> 
+                    )
                 }
             </div>
         )

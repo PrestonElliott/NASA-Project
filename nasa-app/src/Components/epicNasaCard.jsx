@@ -1,5 +1,10 @@
+// import React, {useState} from 'react'
+
+// export default function EpicNasaCard() {
+//     const []
+// }
+
 import React from 'react'
-// import { connect } from 'react-redux'
 
 const EpicNasaCard = (props) => {
 
@@ -12,6 +17,3 @@ const EpicNasaCard = (props) => {
 }
 
 export default EpicNasaCard
-
-// let mapStateToProps = state => ({ epicReducer: state.epicReducer.epicPicsData })
-// export default connect(mapStateToProps)(EpicNasaCard)
