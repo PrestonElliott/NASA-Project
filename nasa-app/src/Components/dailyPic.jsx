@@ -4,25 +4,21 @@ import { Image } from 'react-bootstrap'
 export default class DailyPic extends React.Component {
 
     state = {
-		dailyPic: {}
+		nasaData: { }
 	}
 
-	fetchDailyPic () {
-		fetch(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`)
-		.then(res => res.json())
-		.then(data => { this.setState({ ...this.state, dailyPic: data }) })
-	}
-
-	componentDidMount() { 
-		this.fetchDailyPic()
+	async componentDidMount() { 
+        const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`)
+        const data = await res.json()
+        this.setState({ nasaData: data })
 	}
     
     render() {
         return (
             <div>
-                <h2 id="daily-pic-title">{this.state.dailyPic.title}</h2>
-                <p>{this.state.dailyPic.explanation}</p>
-                <Image id="jumbo-photo" src={this.state.dailyPic.hdurl} />
+                <h2 id="daily-pic-title">{this.state.nasaData.title}</h2>
+                <Image id="jumbo-photo" src={this.state.nasaData.hdurl} />
+                <h4 id="daily-pic-info">{this.state.nasaData.copyright} | {this.state.nasaData.date}</h4>
             </div>
         ) 
     }  

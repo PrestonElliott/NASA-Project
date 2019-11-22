@@ -13,13 +13,7 @@ export default class App extends React.Component {
 
 	state = {
 		dailyPic: {
-			date: "",
-			explanation: "",
-			hdurl: "",
-			media_type: "",
-			service_version: "",
-			title: "",
-			url: ""
+
 		},
 		epicPicsData: {},
 		imgUrlArr: [],
