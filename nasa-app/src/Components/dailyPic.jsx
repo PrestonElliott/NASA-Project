@@ -1,24 +1,29 @@
-import React, { Fragment } from 'react'
-import { Image, Jumbotron } from 'react-bootstrap'
-import Counter from './counter'
+import React from 'react'
+import { Image } from 'react-bootstrap'
 
-// ADD MODAL WITH FULL INFORMATION AND HD PHOTO
+export default class DailyPic extends React.Component {
 
-const DailyPic = (props) => {
+    state = {
+		dailyPic: {}
+	}
+
+	fetchDailyPic () {
+		fetch(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`)
+		.then(res => res.json())
+		.then(data => { this.setState({ ...this.state, dailyPic: data }) })
+	}
+
+	componentDidMount() { 
+		this.fetchDailyPic()
+	}
     
-    return (
-        <Fragment>
+    render() {
+        return (
             <div>
-                <Jumbotron>
-                    <h2 id="daily-pic-title">{props.dailyPic.title}</h2>
-                    <p>{props.dailyPic.explanation}</p>
-                    <Image id="jumbo-photo" src={props.dailyPic.hdurl} />
-                </Jumbotron>
-                <Counter/>
+                <h2 id="daily-pic-title">{this.state.dailyPic.title}</h2>
+                <p>{this.state.dailyPic.explanation}</p>
+                <Image id="jumbo-photo" src={this.state.dailyPic.hdurl} />
             </div>
-        </Fragment>
-    ) 
-    
+        ) 
+    }  
 }
-
-export default DailyPic

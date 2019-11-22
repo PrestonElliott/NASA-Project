@@ -80,9 +80,9 @@ export default class App extends React.Component {
 		console.log(this.state)
 		return (
 			<div>
-			<DailyPic />
-			{/* <DateSelect selected={this.state.startDate} onChange={this.handleChange}/>
-			<EpicNasa imgUrlArr={this.state.imgUrlArr}  /> */}
+			<DailyPic dailyPic={this.state.dailyPic}/>
+			<DateSelect selected={this.state.startDate} onChange={this.handleChange}/>
+			<EpicNasa imgUrlArr={this.state.imgUrlArr}  />
 			</div>
 		)
 	}
