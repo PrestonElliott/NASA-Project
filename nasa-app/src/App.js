@@ -4,7 +4,6 @@ import './App.css'
 
 import DailyPic from './Components/dailyPic'
 import EpicNasa from './Components/epicNasa'
-import DateSelect from './Components/dateSelect'
 
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -13,8 +12,7 @@ export default class App extends React.Component {
 
 	state = {
 		dailyPic: {
-		},
-		startDate: new Date(2015, 7, 20)	
+		}	
 	}
 
 	fetchDailyPic () {
@@ -26,10 +24,8 @@ export default class App extends React.Component {
 
 	componentDidMount() { 
 		this.fetchDailyPic()
-		this.fetchEpicDate()
 	}
 
-	// CONTINUE TO WORK ON THIS FETCH
 	// Valid dateRange Values: "2015-06-13" through "2019-06-27"
 	
 	handleChange = (date) => { this.setState({ ...this.state, startDate: date }) }
@@ -39,7 +35,6 @@ export default class App extends React.Component {
 		return (
 			<div>
 				<DailyPic />
-				{/* <DateSelect selected={this.state.startDate} onChange={this.handleChange}/> */}
 				<EpicNasa />
 			</div>
 		)

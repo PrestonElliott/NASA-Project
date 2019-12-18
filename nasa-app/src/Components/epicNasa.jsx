@@ -6,8 +6,13 @@ export default class EpicNasa extends Component {
 
     state = {
         epicPicsData: {},
-		imgUrlArr: []
-    }
+		imgUrlArr: [],
+		startDate: new Date(2015, 7, 20)
+	}
+	
+	componentDidMount() { 
+		this.fetchEpicDate()
+	}
 
     fetchEpicDate() {
 		const key = process.env.REACT_APP_NASA_API_KEY
@@ -17,7 +22,6 @@ export default class EpicNasa extends Component {
 			d.getFullYear() 
 			+ "-" + ("0" + (d.getMonth() + 1)).slice(-2) 
 			+ "-" + ("0" + d.getDate()).slice(-2)
-		console.log(dateFormat)
 
 		fetch(`https://api.nasa.gov/EPIC/api/natural/date/${dateFormat}?api_key=${key}`)
 		.then(res => res.json())
@@ -30,6 +34,7 @@ export default class EpicNasa extends Component {
 	}
 
 	constructEpicImgUrl = (epicPicsData) => {
+		console.log(epicPicsData)
 		epicPicsData.forEach(epic => {
 			
 			let dateFormat = ""
